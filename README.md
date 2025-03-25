@@ -1,5 +1,5 @@
 <h1 align ="center">CONNECT 4 GAME</h1>
-<h2><a href="https://hyperdevil-x.github.io/Todo_List/" target="_blank">Website Link</a></h2>
+<h2><a href="https://hyperdevil-x.github.io/Connect_4/" target="_blank">Website Link</a></h2>
 <img src="cover.png">
  <h3  align ="center"><b>A Complete Connect 4 Game Using HTML5,CSS3,JAVASCRIPT.BOOTSTRAP V5.3</b></h3>
  <br>

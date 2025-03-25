@@ -1,0 +1,416 @@
+/* 🔹 General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('./jonatan-pie-3N5ccOE3wGg-unsplash.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* 🔥 Dark Mode */
+body.dark-mode {
+    background: #111111;
+    color: #ffffff;
+}
+
+/* 🔹 Glass Effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 🔹 Game Container */
+.container {
+    text-align: center;
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 🔹 Game Board */
+.board {
+    display: grid;
+    grid-template-columns: repeat(7, 65px);
+    grid-template-rows: repeat(6, 65px);
+    gap: 8px;
+    justify-content: center;
+    margin: 25px auto;
+    padding: 20px;
+    background: rgba(0, 91, 181, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+    border: 6px solid #004080;
+    max-width: 550px;
+}
+
+/* 🔹 Individual Cells */
+.cell {
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 🔹 Pieces */
+.cell[data-piece="player1"] {
+    background: var(--player1-color, red);
+    box-shadow: 0 0 15px var(--player1-color, red);
+}
+
+.cell[data-piece="player2"] {
+    background: var(--player2-color, yellow);
+    box-shadow: 0 0 15px var(--player2-color, yellow);
+}
+
+.cell[data-piece="ai"] {
+    background: #0000ff;
+    box-shadow: 0 0 15px #0000ff;
+}
+
+/* 🔹 Hover Effect */
+.cell:hover:not([data-piece]) {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+}
+
+/* 🔹 Animated Piece Drop */
+@keyframes drop {
+    0% {
+        transform: translateY(-400px);
+        opacity: 0;
+    }
+    80% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.cell[data-piece] {
+    animation: drop 0.4s cubic-bezier(0.5, 0, 0.5, 1.5) forwards;
+}
+
+/* 🔹 Scoreboard */
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.scoreboard p {
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+}
+
+/* Player 1 Score */
+#player1Score {
+    color: var(--player1-color, red);
+}
+
+/* Player 2 Score */
+#player2Score {
+    color: var(--player2-color, yellow);
+}
+
+/* 🔹 Buttons */
+button {
+    margin: 12px;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Start Game Button */
+#startGame {
+    background: linear-gradient(145deg, #00c853, #009624);
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 200, 83, 0.5);
+}
+
+/* Dark Mode Toggle */
+#darkModeToggle {
+    background: linear-gradient(145deg, #424242, #212121);
+    color: white;
+}
+
+/* Reset Button */
+#resetBtn {
+    background: linear-gradient(145deg, #2196f3, #0d47a1);
+    color: white;
+}
+
+/* Undo Button */
+#undoBtn {
+    background: linear-gradient(145deg, #ff9800, #e65100);
+    color: white;
+}
+
+/* 🔥 Dark Mode Tweaks */
+body.dark-mode .board {
+    background: rgba(51, 51, 51, 0.9);
+    border-color: #222;
+}
+
+body.dark-mode .cell:not([data-piece]) {
+    background-color: rgba(150, 150, 150, 0.3);
+}
+
+body.dark-mode .scoreboard p {
+    background: rgba(68, 68, 68, 0.7);
+    color: white;
+}
+
+body.dark-mode button:not(#darkModeToggle) {
+    background-color: #555;
+}
+
+/* 🔹 Form Elements */
+input, select {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 2px solid #007bff;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    transition: all 0.3s ease;
+    margin: 8px auto;
+    display: block;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+input:hover, select:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+input[type="color"] {
+    height: 50px;
+    cursor: pointer;
+}
+
+/* Current Player Indicator */
+#currentPlayer {
+    font-size: 1.4rem;
+    text-shadow: 0 0 10px currentColor;
+    transition: color 0.3s ease;
+}
+
+/* 🔹 Responsive Design */
+@media (max-width: 768px) {
+    .board {
+        grid-template-columns: repeat(7, 50px);
+        grid-template-rows: repeat(6, 50px);
+        padding: 15px;
+        gap: 6px;
+    }
+    
+    .cell {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .scoreboard {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    button {
+        width: 90%;
+        margin: 8px auto;
+    }
+    
+    input, select {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .board {
+        grid-template-columns: repeat(7, 40px);
+        grid-template-rows: repeat(6, 40px);
+    }
+    
+    .cell {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+}
+
+/* 🔹 Copyright Notice with Glow Effect */
+.copyright {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    z-index: 1000;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+.copyright a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 2px 5px;
+}
+
+.copyright a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    transition: width 0.3s ease;
+}
+
+.copyright a:hover {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    transform: translateY(-1px);
+}
+
+.copyright a:hover::after {
+    width: 100%;
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .copyright {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.dark-mode .copyright a {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .copyright {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .copyright {
+        font-size: 0.7rem;
+        padding: 5px 10px;
+        bottom: 8px;
+        right: 8px;
+    }
+    .copyright a {
+        font-weight: 500;
+    }
+}
+
+/* 🔒 Copyright Protection Styles */
+.copyright-protected {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    animation: pulse 2s infinite;
+}
+
+.copyright-protected a {
+    color: #4fc3f7;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+}
+
+.copyright-protected a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #4fc3f7;
+    transition: width 0.3s;
+}
+
+.copyright-protected a:hover::after {
+    width: 100%;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(79, 195, 247, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(79, 195, 247, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(79, 195, 247, 0); }
+}
+
+/* Dark mode adjustment */
+body.dark-mode .copyright-protected {
+    background: rgba(255, 255, 255, 0.15);
+}

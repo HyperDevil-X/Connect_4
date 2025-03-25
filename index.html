@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect 4 Game</title>
+    <link rel="icon" type="image/jpg" href="./icon.jpg">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" defer></script>
+</head>
+<body>
+
+    <div class="container text-center py-4">
+        <h1 class="fw-bold">Connect 4</h1>
+        
+        <!-- Dark Mode Toggle -->
+        <button id="darkModeToggle" class="btn btn-dark my-3">Toggle Dark Mode</button>
+
+        <!-- Setup Section -->
+        <div id="setup" class="mt-4">
+            <h2 class="fw-bold">Setup Game</h2>
+            <div class="mb-3">
+                <input type="text" id="player1Name" class="form-control fw-bold" placeholder="Enter Player 1 Name" required>
+                <input type="color" id="player1Color" class="form-control mt-2" value="#ff0000">
+            </div>
+            <div class="mb-3">
+                <input type="text" id="player2Name" class="form-control fw-bold" placeholder="Enter Player 2 Name (or AI)" required>
+                <input type="color" id="player2Color" class="form-control mt-2" value="#ffff00">
+            </div>
+            <div class="mb-3">
+                <select id="gameMode" class="form-select fw-bold">
+                    <option value="twoPlayers" selected>Two Players</option>
+                    <option value="ai">Play Against AI</option>
+                </select>
+            </div>
+            <button id="startGame" class="btn btn-success">Start Game</button>
+        </div>
+
+        <!-- Game Board Section (Hidden Initially) -->
+        <div id="gameSection" class="mt-4" style="display: none;">
+            <h3 class="fs-3">Current Player: <span id="currentPlayer" class="fw-bold"></span></h3>
+
+            <div class="d-flex justify-content-center mt-4">
+                <div id="board" class="board"></div>
+            </div>
+
+            <!-- Scoreboard -->
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <p class="fs-4 fw-bold"><span id="player1Score">0</span> Wins</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="fs-4 fw-bold"><span id="player2Score">0</span> Wins</p>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="row justify-content-center mt-3">
+                <div class="col-md-4 col-6">
+                    <button id="resetBtn" class="btn btn-primary w-100">Restart Game</button>
+                </div>
+                <div class="col-md-4 col-6 mt-2 mt-md-0">
+                    <button id="undoBtn" class="btn btn-warning w-100">Undo Last Move</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Notice -->
+    <div class="copyright">
+        Created by <a href="https://github.com/Hyperdevil-X" target="_blank" rel="noopener noreferrer">Hyperdevil-X</a>
+    </div>
+
+    <!-- Add security JS first -->
+    <script src="security.js"></script>
+    <!-- Then main game JS -->
+    <script src="script.js" defer></script>
+</body>
+</html>
